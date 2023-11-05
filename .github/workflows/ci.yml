@@ -5,13 +5,10 @@ jobs:
     name: Build Jekyll
     runs-on: ubuntu-latest
     steps:
-      - name: Set Environment Variables
-        run: |
-          echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> $GH_TOKEN
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - uses: actions/checkout@v2
       - name: Build the site in the jekyll/builder container
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           export JEKYLL_VERSION=3.8
           docker run \
